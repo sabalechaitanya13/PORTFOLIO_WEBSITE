@@ -8,9 +8,7 @@ Designed with a premium dark UI, glassmorphism effects, animated sections, inter
 ## 🚀 Live Preview
 
 Deploy easily using GitHub Pages, Netlify, or Vercel.
-
-Example:
-(https://sabalechaitanya13.github.io/portfolio_website)
+Live Preview - (https://sabalechaitanya13.github.io/portfolio_website)
 
 ---
 
