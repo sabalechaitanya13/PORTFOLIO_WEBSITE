@@ -91,16 +91,16 @@ body::after{
   animation:em-float linear infinite;
   user-select:none;
 }
-.em:nth-child(1){left:6%;top:25%;animation-duration:14s;animation-delay:0s;font-size:1.4rem}
-.em:nth-child(2){left:14%;top:65%;animation-duration:17s;animation-delay:2s;font-size:1.2rem}
-.em:nth-child(3){left:82%;top:20%;animation-duration:13s;animation-delay:1s;font-size:1.6rem}
-.em:nth-child(4){left:88%;top:58%;animation-duration:18s;animation-delay:3s;font-size:1.1rem}
-.em:nth-child(5){left:76%;top:80%;animation-duration:16s;animation-delay:0.5s;font-size:1.3rem}
-.em:nth-child(6){left:4%;top:80%;animation-duration:15s;animation-delay:4s;font-size:1.2rem}
-.em:nth-child(7){left:50%;top:8%;animation-duration:19s;animation-delay:1.5s;font-size:1.4rem}
-.em:nth-child(8){left:92%;top:38%;animation-duration:12s;animation-delay:2.5s;font-size:1rem}
-.em:nth-child(9){left:22%;top:15%;animation-duration:20s;animation-delay:3.5s;font-size:1.1rem}
-.em:nth-child(10){left:64%;top:72%;animation-duration:16s;animation-delay:0.8s;font-size:1.3rem}
+.em:nth-child(1){left:5%;top:20%;animation-duration:14s;animation-delay:0s;font-size:1.6rem}
+.em:nth-child(2){right:5%;top:75%;animation-duration:17s;animation-delay:2s;font-size:1.3rem}
+.em:nth-child(3){left:5%;top:50%;animation-duration:13s;animation-delay:1s;font-size:1.8rem}
+.em:nth-child(4){right:5%;top:35%;animation-duration:18s;animation-delay:3s;font-size:1.2rem}
+.em:nth-child(5){left:5%;top:78%;animation-duration:16s;animation-delay:0.5s;font-size:1.4rem}
+.em:nth-child(6){right:5%;top:18%;animation-duration:15s;animation-delay:4s;font-size:1.3rem}
+.em:nth-child(7){left:50%;top:6%;animation-duration:19s;animation-delay:1.5s;font-size:1.5rem}
+.em:nth-child(8){right:5%;top:55%;animation-duration:12s;animation-delay:2.5s;font-size:1.1rem}
+.em:nth-child(9){left:5%;top:35%;animation-duration:20s;animation-delay:3.5s;font-size:1.2rem}
+.em:nth-child(10){left:50%;top:88%;animation-duration:16s;animation-delay:0.8s;font-size:1.4rem}
 @keyframes em-float{
   0%{opacity:0;transform:translateY(20px) rotate(-8deg)}
   10%{opacity:.55}
@@ -274,6 +274,129 @@ h2.display em{font-style:italic;color:var(--m)}
 }
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
+/* ── HERO NAME — Premium circular spotlight halo (Aceternity/Awwwards style) ── */
+.hero-name{
+  text-shadow:
+    0 2px 8px rgba(28,22,18,.06);
+}
+.hero-name-glow{
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  /* Large soft circular halo */
+  width:520px; height:320px;
+  border-radius:50%;
+  background:radial-gradient(
+    ellipse 60% 55% at 50% 50%,
+    rgba(184,129,78,.28) 0%,
+    rgba(156,107,66,.18) 25%,
+    rgba(156,107,66,.07) 55%,
+    transparent 75%
+  );
+  filter:blur(18px);
+  pointer-events:none; z-index:0;
+  animation:halo-breathe 5s ease-in-out infinite alternate;
+}
+/* Second ring layer — wider, dimmer */
+.hero-name-glow::after{
+  content:'';
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:700px; height:420px;
+  border-radius:50%;
+  background:radial-gradient(
+    ellipse 70% 60% at 50% 50%,
+    rgba(156,107,66,.1) 0%,
+    rgba(138,106,50,.05) 45%,
+    transparent 70%
+  );
+  filter:blur(32px);
+  animation:halo-breathe 7s ease-in-out infinite alternate-reverse;
+}
+@keyframes halo-breathe{
+  from{opacity:.7;transform:translate(-50%,-50%) scale(.95)}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1.08)}
+}
+@keyframes halo-breathe{
+  from{opacity:.7;transform:translate(-50%,-50%) scale(.95)}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1.08)}
+}
+/* keep pulse for badge dot */
+
+/* ── ANIMATED MOVING GRADIENTS per section ── */
+@keyframes grad-move{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+#about{
+  background:linear-gradient(135deg,var(--w0),var(--w1),var(--w2),var(--w1),var(--w0));
+  background-size:400% 400%;
+  animation:grad-move 14s ease infinite;
+}
+#skills{
+  background:linear-gradient(135deg,var(--w1),var(--w2),var(--w1),var(--w3),var(--w1));
+  background-size:400% 400%;
+  animation:grad-move 18s ease infinite;
+}
+#experience{
+  background:linear-gradient(135deg,var(--w2),var(--w3),var(--w2),var(--w1),var(--w2));
+  background-size:400% 400%;
+  animation:grad-move 16s ease infinite;
+  position:relative;overflow:hidden;
+}
+#experience::before{
+  content:'';position:absolute;top:-200px;right:-150px;
+  width:550px;height:550px;border-radius:50%;
+  background:radial-gradient(circle,rgba(156,107,66,.055) 0%,transparent 70%);
+  pointer-events:none;
+}
+#projects{
+  background:linear-gradient(135deg,var(--w1),var(--w0),var(--w2),var(--w0),var(--w1));
+  background-size:400% 400%;
+  animation:grad-move 20s ease infinite;
+}
+#certifications{
+  background:linear-gradient(135deg,var(--w2),var(--w1),var(--w3),var(--w2),var(--w1));
+  background-size:400% 400%;
+  animation:grad-move 15s ease infinite;
+}
+#education{
+  background:linear-gradient(135deg,var(--w1),var(--w2),var(--w0),var(--w1),var(--w2));
+  background-size:400% 400%;
+  animation:grad-move 17s ease infinite;
+}
+#contact{
+  background:linear-gradient(135deg,var(--w0),var(--w2),var(--w1),var(--w0),var(--w2));
+  background-size:400% 400%;
+  animation:grad-move 12s ease infinite;
+  position:relative;overflow:hidden;
+}
+
+/* ── ENHANCED HOVER EFFECTS (satisfying) ── */
+.sk-card{
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:var(--rl);padding:22px 24px;
+  transition:all .3s var(--ease);
+  position:relative;overflow:hidden;
+}
+.sk-card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(156,107,66,.09) 0%,transparent 60%);
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.sk-card:hover{transform:translateY(-5px) scale(1.01);box-shadow:0 16px 40px rgba(156,107,66,.15),0 4px 12px rgba(28,22,18,.08);border-color:rgba(156,107,66,.35)}
+.sk-card:hover::after{opacity:1}
+
+.cert:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 14px 36px rgba(138,106,50,.18);border-color:rgba(138,106,50,.35)}
+.edu:hover{transform:translateX(4px);box-shadow:var(--sh2);border-color:rgba(156,107,66,.3);border-left:3px solid var(--m)}
+.proj:hover{transform:translateY(-8px) rotate(.3deg);box-shadow:0 28px 56px rgba(28,22,18,.16),0 0 0 1px rgba(156,107,66,.18)}
+.tl-it:hover .tl-card{box-shadow:0 12px 36px rgba(156,107,66,.14),0 4px 12px rgba(28,22,18,.08);border-color:rgba(156,107,66,.3);transform:translateX(4px)}
+.fc:hover{transform:translateY(-6px) !important;box-shadow:0 20px 40px rgba(156,107,66,.18);border-color:rgba(156,107,66,.35)}
+.pill:hover{background:rgba(156,107,66,.12);border-color:rgba(156,107,66,.3);color:var(--m);transform:scale(1.05)}
+.cl:hover{transform:translateX(8px);box-shadow:0 8px 24px rgba(156,107,66,.14)}
+
 /* Buttons */
 .hero-btns{
   display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
@@ -384,10 +507,9 @@ h2.display em{font-style:italic;color:var(--m)}
 
 @keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
-/* ════════════════════════════════
-   ABOUT
-════════════════════════════════ */
-#about{background:linear-gradient(180deg,var(--w0) 0%,var(--w1) 100%)}
+/* ── section base: position relative for emoji abs positioning ── */
+#about,#skills,#projects,#certifications,#education{position:relative}
+#experience,#contact{position:relative;overflow:hidden}
 
 .about-grid{
   display:grid;grid-template-columns:1fr 1.25fr;
@@ -418,11 +540,11 @@ h2.display em{font-style:italic;color:var(--m)}
   -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;line-height:1;
 }
-.av-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px;justify-content:center;padding:0 18px}
+.av-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;justify-content:center;padding:0 14px;max-height:160px;overflow-y:auto}
 .chip{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;
   background:rgba(156,107,66,.08);border:1px solid rgba(156,107,66,.2);
-  color:var(--m);border-radius:100px;padding:4px 12px;
+  color:var(--m);border-radius:100px;padding:3px 10px;white-space:nowrap;
 }
 
 .ab-text p{font-size:15px;line-height:1.88;color:var(--i2);margin-bottom:14px}
@@ -450,7 +572,6 @@ h2.display em{font-style:italic;color:var(--m)}
 /* ════════════════════════════════
    SKILLS
 ════════════════════════════════ */
-#skills{background:var(--w1)}
 
 /* Icon row — zigzag via margin-top on alternates */
 .icon-row{
@@ -512,17 +633,12 @@ h2.display em{font-style:italic;color:var(--m)}
 }
 .pill:hover{background:rgba(156,107,66,.1);border-color:rgba(156,107,66,.28);color:var(--m)}
 
-/* ════════════════════════════════
-   EXPERIENCE
-════════════════════════════════ */
-#experience{background:var(--w2);position:relative;overflow:hidden}
-#experience::before{
-  content:'';position:absolute;top:-200px;right:-150px;
-  width:550px;height:550px;border-radius:50%;
-  background:radial-gradient(circle,rgba(156,107,66,.055) 0%,transparent 70%);
-  pointer-events:none;
-}
+/* Skill cards grid */
+.sk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px}
 
+/* ════════════════════════════════
+   EXPERIENCE timeline
+════════════════════════════════ */
 .tl{padding-left:30px;position:relative}
 .tl::before{
   content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;
@@ -571,7 +687,6 @@ h2.display em{font-style:italic;color:var(--m)}
 /* ════════════════════════════════
    PROJECTS
 ════════════════════════════════ */
-#projects{background:var(--w1)}
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(315px,1fr));gap:18px}
 .proj{
   background:var(--card);border:1px solid var(--border2);
@@ -610,7 +725,7 @@ h2.display em{font-style:italic;color:var(--m)}
 /* ════════════════════════════════
    CERTIFICATIONS
 ════════════════════════════════ */
-#certifications{background:var(--w2)}
+#certifications{}
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(284px,1fr));gap:13px}
 .cert{
   background:var(--card);border:1px solid var(--border2);
@@ -630,7 +745,7 @@ h2.display em{font-style:italic;color:var(--m)}
 /* ════════════════════════════════
    EDUCATION
 ════════════════════════════════ */
-#education{background:var(--w1)}
+#education{}
 .edu-list{display:flex;flex-direction:column;gap:12px}
 .edu{
   background:var(--card);border:1px solid var(--border2);
@@ -649,10 +764,9 @@ h2.display em{font-style:italic;color:var(--m)}
 .edu-score{font-size:13px;font-weight:600;color:var(--g)}
 
 /* ════════════════════════════════
-   CONTACT — Light warm ivory (premium & airy)
+   CONTACT — Light warm ivory
 ════════════════════════════════ */
 #contact{
-  background:linear-gradient(160deg,var(--w0) 0%,var(--w2) 100%);
   position:relative;overflow:hidden;
 }
 #contact::before{
@@ -757,7 +871,7 @@ footer span{color:var(--m)}
 
 <!-- ══════ HERO ══════ -->
 <section id="hero">
-  <!-- Premium floating office emojis -->
+  <!-- Premium floating office emojis — all corners & empty spaces -->
   <div class="hero-emojis">
     <span class="em">💼</span>
     <span class="em">📊</span>
@@ -770,6 +884,60 @@ footer span{color:var(--m)}
     <span class="em">📌</span>
     <span class="em">⚡</span>
   </div>
+  <!-- TOP ROW corners -->
+  <span style="position:absolute;top:10%;left:2%;font-size:2rem;opacity:.13;transform:rotate(-18deg);pointer-events:none;z-index:1">📁</span>
+  <span style="position:absolute;top:10%;right:2%;font-size:1.9rem;opacity:.13;transform:rotate(16deg);pointer-events:none;z-index:1">📧</span>
+  <!-- LEFT CENTER zigzag — fills purple left gap -->
+  <span style="position:absolute;top:30%;left:6%;font-size:1.7rem;opacity:.13;transform:rotate(-12deg);pointer-events:none;z-index:1">🗃️</span>
+  <span style="position:absolute;top:37%;left:12%;font-size:1.5rem;opacity:.12;transform:rotate(8deg);pointer-events:none;z-index:1">📦</span>
+  <span style="position:absolute;top:44%;left:5%;font-size:1.6rem;opacity:.13;transform:rotate(-6deg);pointer-events:none;z-index:1">🖨️</span>
+  <span style="position:absolute;top:51%;left:13%;font-size:1.4rem;opacity:.11;transform:rotate(14deg);pointer-events:none;z-index:1">📡</span>
+  <span style="position:absolute;top:58%;left:6%;font-size:1.7rem;opacity:.12;transform:rotate(-10deg);pointer-events:none;z-index:1">🔋</span>
+  <span style="position:absolute;top:65%;left:12%;font-size:1.5rem;opacity:.12;transform:rotate(9deg);pointer-events:none;z-index:1">🧮</span>
+  <span style="position:absolute;top:72%;left:5%;font-size:1.6rem;opacity:.11;transform:rotate(-14deg);pointer-events:none;z-index:1">💾</span>
+  <span style="position:absolute;top:79%;left:13%;font-size:1.4rem;opacity:.10;transform:rotate(11deg);pointer-events:none;z-index:1">🔌</span>
+  <!-- RIGHT CENTER zigzag — fills purple right gap -->
+  <span style="position:absolute;top:30%;right:6%;font-size:1.7rem;opacity:.13;transform:rotate(12deg);pointer-events:none;z-index:1">📲</span>
+  <span style="position:absolute;top:37%;right:12%;font-size:1.5rem;opacity:.12;transform:rotate(-8deg);pointer-events:none;z-index:1">🗄️</span>
+  <span style="position:absolute;top:44%;right:5%;font-size:1.6rem;opacity:.13;transform:rotate(6deg);pointer-events:none;z-index:1">⌚</span>
+  <span style="position:absolute;top:51%;right:13%;font-size:1.4rem;opacity:.11;transform:rotate(-14deg);pointer-events:none;z-index:1">📐</span>
+  <span style="position:absolute;top:58%;right:6%;font-size:1.7rem;opacity:.12;transform:rotate(10deg);pointer-events:none;z-index:1">🧩</span>
+  <span style="position:absolute;top:65%;right:12%;font-size:1.5rem;opacity:.12;transform:rotate(-9deg);pointer-events:none;z-index:1">📟</span>
+  <span style="position:absolute;top:72%;right:5%;font-size:1.6rem;opacity:.11;transform:rotate(14deg);pointer-events:none;z-index:1">🖲️</span>
+  <span style="position:absolute;top:79%;right:13%;font-size:1.4rem;opacity:.10;transform:rotate(-11deg);pointer-events:none;z-index:1">💿</span>
+  <!-- BOTTOM ROW -->
+  <span style="position:absolute;bottom:4%;left:18%;font-size:1.5rem;opacity:.10;transform:rotate(-8deg);pointer-events:none;z-index:1">🚀</span>
+  <span style="position:absolute;bottom:4%;right:18%;font-size:1.5rem;opacity:.10;transform:rotate(8deg);pointer-events:none;z-index:1">✨</span>
+  <span style="position:absolute;top:4%;left:18%;font-size:1.4rem;opacity:.10;transform:rotate(10deg);pointer-events:none;z-index:1">🤝</span>
+  <span style="position:absolute;top:4%;right:18%;font-size:1.4rem;opacity:.10;transform:rotate(-10deg);pointer-events:none;z-index:1">🎯</span>
+  <!-- CENTRE — scattered all over behind name & throughout dashboard -->
+  <!-- Above name band -->
+  <span style="position:absolute;top:8%;left:28%;font-size:1.3rem;opacity:.09;transform:rotate(-9deg);pointer-events:none;z-index:0">🧑‍💻</span>
+  <span style="position:absolute;top:6%;left:42%;font-size:1.2rem;opacity:.08;transform:rotate(6deg);pointer-events:none;z-index:0">📌</span>
+  <span style="position:absolute;top:8%;right:28%;font-size:1.3rem;opacity:.09;transform:rotate(11deg);pointer-events:none;z-index:0">🖊️</span>
+  <span style="position:absolute;top:5%;left:35%;font-size:1.1rem;opacity:.07;transform:rotate(-5deg);pointer-events:none;z-index:0">📎</span>
+  <span style="position:absolute;top:6%;right:35%;font-size:1.1rem;opacity:.07;transform:rotate(7deg);pointer-events:none;z-index:0">🔖</span>
+  <!-- Behind / around name (z-index:0 so it sits behind text) -->
+  <span style="position:absolute;top:18%;left:20%;font-size:1.8rem;opacity:.07;transform:rotate(-14deg);pointer-events:none;z-index:0">💻</span>
+  <span style="position:absolute;top:22%;right:22%;font-size:1.6rem;opacity:.07;transform:rotate(12deg);pointer-events:none;z-index:0">🖥️</span>
+  <span style="position:absolute;top:32%;left:24%;font-size:1.5rem;opacity:.07;transform:rotate(-8deg);pointer-events:none;z-index:0">☕</span>
+  <span style="position:absolute;top:28%;right:26%;font-size:1.4rem;opacity:.07;transform:rotate(10deg);pointer-events:none;z-index:0">📋</span>
+  <span style="position:absolute;top:42%;left:20%;font-size:1.6rem;opacity:.07;transform:rotate(-11deg);pointer-events:none;z-index:0">📊</span>
+  <span style="position:absolute;top:40%;right:21%;font-size:1.5rem;opacity:.07;transform:rotate(9deg);pointer-events:none;z-index:0">💡</span>
+  <span style="position:absolute;top:52%;left:25%;font-size:1.4rem;opacity:.07;transform:rotate(-7deg);pointer-events:none;z-index:0">🔗</span>
+  <span style="position:absolute;top:50%;right:25%;font-size:1.5rem;opacity:.07;transform:rotate(13deg);pointer-events:none;z-index:0">⚡</span>
+  <!-- Between name & buttons (middle-low band) -->
+  <span style="position:absolute;top:60%;left:22%;font-size:1.4rem;opacity:.08;transform:rotate(-10deg);pointer-events:none;z-index:0">🏆</span>
+  <span style="position:absolute;top:62%;right:23%;font-size:1.3rem;opacity:.08;transform:rotate(8deg);pointer-events:none;z-index:0">🎖️</span>
+  <span style="position:absolute;top:70%;left:26%;font-size:1.3rem;opacity:.08;transform:rotate(-6deg);pointer-events:none;z-index:0">📁</span>
+  <span style="position:absolute;top:68%;right:27%;font-size:1.4rem;opacity:.08;transform:rotate(11deg);pointer-events:none;z-index:0">📝</span>
+  <!-- Below buttons / stat strip area -->
+  <span style="position:absolute;top:80%;left:22%;font-size:1.3rem;opacity:.08;transform:rotate(-9deg);pointer-events:none;z-index:0">🗂️</span>
+  <span style="position:absolute;top:82%;right:24%;font-size:1.2rem;opacity:.07;transform:rotate(7deg);pointer-events:none;z-index:0">📮</span>
+  <span style="position:absolute;top:88%;left:30%;font-size:1.2rem;opacity:.07;transform:rotate(-5deg);pointer-events:none;z-index:0">🔍</span>
+  <span style="position:absolute;top:86%;right:30%;font-size:1.2rem;opacity:.07;transform:rotate(9deg);pointer-events:none;z-index:0">🎯</span>
+  <span style="position:absolute;top:92%;left:40%;font-size:1.1rem;opacity:.07;transform:rotate(-7deg);pointer-events:none;z-index:0">🚀</span>
+  <span style="position:absolute;top:92%;right:40%;font-size:1.1rem;opacity:.07;transform:rotate(6deg);pointer-events:none;z-index:0">✨</span>
   <div class="hero-wrap">
 
     <div class="avail-badge">
@@ -777,7 +945,8 @@ footer span{color:var(--m)}
       Open to Work · Pune, India · Immediate Joining
     </div>
 
-    <h1 class="hero-name">
+    <h1 class="hero-name" style="position:relative">
+      <span class="hero-name-glow"></span>
       Chaitanya
       <span class="hero-italic">Sabale</span>
     </h1>
@@ -793,7 +962,7 @@ footer span{color:var(--m)}
     </p>
 
     <div class="hero-btns">
-      <a href="#projects" class="btn btn-fill">View Projects →</a>
+      <a href="https://linkedin.com/in/chaitanyasabale" target="_blank" class="btn btn-fill">Go to LinkedIn →</a>
       <a href="#contact" class="btn btn-line">Get In Touch</a>
     </div>
 
@@ -840,13 +1009,32 @@ footer span{color:var(--m)}
 <!-- ══════ ABOUT ══════ -->
 <section id="about">
   <div class="wrap sec">
+    <!-- floating emojis -->
+    <span style="position:absolute;top:8%;left:2%;font-size:1.6rem;opacity:.13;transform:rotate(-15deg);pointer-events:none">🎯</span>
+    <span style="position:absolute;top:20%;right:3%;font-size:1.4rem;opacity:.12;transform:rotate(10deg);pointer-events:none">📚</span>
+    <span style="position:absolute;bottom:12%;left:4%;font-size:1.3rem;opacity:.11;transform:rotate(-8deg);pointer-events:none">🧠</span>
+    <span style="position:absolute;bottom:5%;right:2%;font-size:1.5rem;opacity:.12;transform:rotate(12deg);pointer-events:none">✨</span>
     <div class="about-grid">
       <div class="rv-l" style="transition-delay:.08s">
         <div class="av-box">
           <div class="av-mono">CS</div>
           <div class="av-chips">
-            <span class="chip">Java</span><span class="chip">MySQL</span>
-            <span class="chip">HTML/CSS</span><span class="chip">Excel</span>
+            <span class="chip">☕ Java</span>
+            <span class="chip">🐬 MySQL</span>
+            <span class="chip">🌐 HTML</span>
+            <span class="chip">🎨 CSS</span>
+            <span class="chip">📊 Excel</span>
+            <span class="chip">🗄️ SQL</span>
+            <span class="chip">🔀 Git</span>
+            <span class="chip">🐍 Python</span>
+            <span class="chip">⚙️ C++</span>
+            <span class="chip">🏢 Tally</span>
+            <span class="chip">📐 Bootstrap</span>
+            <span class="chip">🧩 OOP</span>
+            <span class="chip">🌲 DSA</span>
+            <span class="chip">💻 OS</span>
+            <span class="chip">🌐 Networks</span>
+            <span class="chip">🗃️ DBMS</span>
           </div>
         </div>
       </div>
@@ -857,13 +1045,13 @@ footer span{color:var(--m)}
         <p>I engineered a <strong>Java-MySQL Queue Management System</strong> that cut simulated wait times by 40%, and handled 50+ daily government transactions at a Common Services Centre with 99%+ accuracy.</p>
         <p>Holder of <strong>6 industry certifications</strong> from IBM, Google, Deloitte, EY, Siemens &amp; HP. Actively upskilling in Python and Data Analytics. Seeking roles in Software Development, IT Support, or Data Analytics.</p>
         <ul class="info-rows">
-          <li><span class="ik">Location</span><span class="iv">Pune, Maharashtra</span></li>
-          <li><span class="ik">Email</span><span class="iv"><a href="mailto:sabalechaitanya13@gmail.com">sabalechaitanya13@gmail.com</a></span></li>
-          <li><span class="ik">Phone</span><span class="iv"><a href="tel:+917058848982">+91 70588 48982</a></span></li>
-          <li><span class="ik">Website</span><span class="iv"><a href="https://chaitanyasabale.com" target="_blank">chaitanyasabale.com</a></span></li>
-          <li><span class="ik">LinkedIn</span><span class="iv"><a href="https://linkedin.com/in/chaitanyasabale" target="_blank">linkedin.com/in/chaitanyasabale</a></span></li>
-          <li><span class="ik">Status</span><span class="iv avl">Immediate · Open to Relocation</span></li>
-          <li><span class="ik">Languages</span><span class="iv">English · Hindi · Marathi · Sanskrit</span></li>
+          <li><span class="ik">Location</span><span class="iv">📍 Pune, Maharashtra</span></li>
+          <li><span class="ik">Email</span><span class="iv"><a href="mailto:sabalechaitanya13@gmail.com">✉️ sabalechaitanya13@gmail.com</a></span></li>
+          <li><span class="ik">Phone</span><span class="iv"><a href="tel:+917058848982">📱 +91 70588 48982</a></span></li>
+          <li><span class="ik">GitHub</span><span class="iv"><a href="https://github.com/sabalechaitanya13" target="_blank">🐙 github.com/sabalechaitanya13</a></span></li>
+          <li><span class="ik">LinkedIn</span><span class="iv"><a href="https://linkedin.com/in/chaitanyasabale" target="_blank">💼 linkedin.com/in/chaitanyasabale</a></span></li>
+          <li><span class="ik">Status</span><span class="iv avl">✅ Immediate · Open to Relocation</span></li>
+          <li><span class="ik">Languages</span><span class="iv">🗣️ English · Hindi · Marathi · Sanskrit</span></li>
         </ul>
       </div>
     </div>
@@ -873,6 +1061,10 @@ footer span{color:var(--m)}
 <!-- ══════ SKILLS ══════ -->
 <section id="skills">
   <div class="wrap sec">
+    <span style="position:absolute;top:6%;right:4%;font-size:1.5rem;opacity:.12;transform:rotate(14deg);pointer-events:none">⚡</span>
+    <span style="position:absolute;top:35%;left:2%;font-size:1.4rem;opacity:.11;transform:rotate(-10deg);pointer-events:none">🔧</span>
+    <span style="position:absolute;bottom:10%;right:3%;font-size:1.6rem;opacity:.12;transform:rotate(8deg);pointer-events:none">💎</span>
+    <span style="position:absolute;bottom:20%;left:3%;font-size:1.3rem;opacity:.1;transform:rotate(-12deg);pointer-events:none">🚀</span>
     <div class="sh rv">
       <div class="eyebrow">02 — Skills &amp; Tools</div>
       <h2 class="display">My <em>toolkit</em></h2>
@@ -898,7 +1090,7 @@ footer span{color:var(--m)}
       <div class="sk-card rv" style="transition-delay:.12s"><div class="sk-head">Web Technologies</div><div class="sk-pills"><span class="pill">🌐 HTML5</span><span class="pill">🎨 CSS3</span><span class="pill">📐 Bootstrap</span><span class="pill">📱 Responsive</span></div></div>
       <div class="sk-card rv" style="transition-delay:.17s"><div class="sk-head">Databases</div><div class="sk-pills"><span class="pill">🐬 MySQL</span><span class="pill">🗃️ DBMS</span><span class="pill">⚡ SQL Optimization</span><span class="pill">📊 MS Excel</span></div></div>
       <div class="sk-card rv" style="transition-delay:.22s"><div class="sk-head">Tools &amp; Platforms</div><div class="sk-pills"><span class="pill">🔀 Git</span><span class="pill">🐙 GitHub</span><span class="pill">📁 MS Office</span><span class="pill">🏢 Tally ERP</span></div></div>
-      <div class="sk-card rv" style="transition-delay:.27s"><div class="sk-head">CS Fundamentals</div><div class="sk-pills"><span class="pill">🧩 OOP</span><span class="pill">🌲 DSA</span><span class="pill">🔄 SDLC</span><span class="pill">💻 OS</span><span class="pill">🌐 Networks</span><span class="pill">🔍 Algorithms</span><span class="pill">🗃️ DBMS</span><span class="pill">🏗️ Software Eng.</span><span class="pill">⚙️ System Design</span></div></div>
+      <div class="sk-card rv" style="transition-delay:.27s"><div class="sk-head">CS Fundamentals</div><div class="sk-pills"><span class="pill">🧩 OOP</span><span class="pill">🌲 Data Structures</span><span class="pill">🔍 Algorithms</span><span class="pill">💻 Operating Systems</span><span class="pill">🌐 Computer Networks</span><span class="pill">🗃️ DBMS</span><span class="pill">🏗️ Software Engineering</span><span class="pill">⚙️ System Design</span></div></div>
       <div class="sk-card rv" style="transition-delay:.32s"><div class="sk-head">Professional</div><div class="sk-pills"><span class="pill">🏗️ Ops Mgmt</span><span class="pill">📈 MIS Reporting</span><span class="pill">🔄 Process Opt.</span><span class="pill">🤝 Client Relations</span><span class="pill">📋 SLA Mgmt</span><span class="pill">✅ Compliance</span></div></div>
     </div>
   </div>
@@ -907,6 +1099,10 @@ footer span{color:var(--m)}
 <!-- ══════ EXPERIENCE ══════ -->
 <section id="experience">
   <div class="wrap sec">
+    <span style="position:absolute;top:5%;left:3%;font-size:1.5rem;opacity:.11;transform:rotate(-8deg);pointer-events:none">🏢</span>
+    <span style="position:absolute;top:30%;right:2%;font-size:1.4rem;opacity:.12;transform:rotate(15deg);pointer-events:none">📋</span>
+    <span style="position:absolute;bottom:15%;left:2%;font-size:1.3rem;opacity:.1;transform:rotate(-5deg);pointer-events:none">📈</span>
+    <span style="position:absolute;bottom:6%;right:4%;font-size:1.5rem;opacity:.12;transform:rotate(10deg);pointer-events:none">🤝</span>
     <div class="sh rv">
       <div class="eyebrow">03 — Work Experience</div>
       <h2 class="display">Where I've <em>worked</em></h2>
@@ -947,6 +1143,10 @@ footer span{color:var(--m)}
 <!-- ══════ PROJECTS ══════ -->
 <section id="projects">
   <div class="wrap sec">
+    <span style="position:absolute;top:7%;right:3%;font-size:1.6rem;opacity:.11;transform:rotate(12deg);pointer-events:none">💻</span>
+    <span style="position:absolute;top:40%;left:1.5%;font-size:1.4rem;opacity:.12;transform:rotate(-14deg);pointer-events:none">⚙️</span>
+    <span style="position:absolute;bottom:8%;right:2%;font-size:1.5rem;opacity:.11;transform:rotate(8deg);pointer-events:none">🛠️</span>
+    <span style="position:absolute;bottom:18%;left:3%;font-size:1.3rem;opacity:.1;transform:rotate(-6deg);pointer-events:none">🌟</span>
     <div class="sh rv">
       <div class="eyebrow">04 — Projects</div>
       <h2 class="display">Things I've <em>built</em></h2>
@@ -980,6 +1180,10 @@ footer span{color:var(--m)}
 <!-- ══════ CERTIFICATIONS ══════ -->
 <section id="certifications">
   <div class="wrap sec">
+    <span style="position:absolute;top:8%;left:2%;font-size:1.5rem;opacity:.12;transform:rotate(-12deg);pointer-events:none">🏅</span>
+    <span style="position:absolute;top:25%;right:2%;font-size:1.4rem;opacity:.11;transform:rotate(9deg);pointer-events:none">🎖️</span>
+    <span style="position:absolute;bottom:10%;left:3%;font-size:1.3rem;opacity:.1;transform:rotate(-7deg);pointer-events:none">📜</span>
+    <span style="position:absolute;bottom:5%;right:3%;font-size:1.5rem;opacity:.12;transform:rotate(11deg);pointer-events:none">🌐</span>
     <div class="sh rv">
       <div class="eyebrow">05 — Certifications</div>
       <h2 class="display">What I've <em>earned</em></h2>
@@ -998,6 +1202,10 @@ footer span{color:var(--m)}
 <!-- ══════ EDUCATION ══════ -->
 <section id="education">
   <div class="wrap sec">
+    <span style="position:absolute;top:6%;right:3%;font-size:1.6rem;opacity:.12;transform:rotate(13deg);pointer-events:none">🎓</span>
+    <span style="position:absolute;top:40%;left:2%;font-size:1.4rem;opacity:.11;transform:rotate(-9deg);pointer-events:none">📖</span>
+    <span style="position:absolute;bottom:8%;right:2%;font-size:1.5rem;opacity:.11;transform:rotate(7deg);pointer-events:none">🏫</span>
+    <span style="position:absolute;bottom:20%;left:3%;font-size:1.3rem;opacity:.1;transform:rotate(-11deg);pointer-events:none">✏️</span>
     <div class="sh rv">
       <div class="eyebrow">06 — Education</div>
       <h2 class="display">Where I <em>studied</em></h2>
@@ -1022,6 +1230,10 @@ footer span{color:var(--m)}
 <!-- ══════ CONTACT ══════ -->
 <section id="contact">
   <div class="wrap sec">
+    <span style="position:absolute;top:8%;right:4%;font-size:1.5rem;opacity:.12;transform:rotate(11deg);pointer-events:none">💬</span>
+    <span style="position:absolute;top:35%;left:2%;font-size:1.4rem;opacity:.11;transform:rotate(-10deg);pointer-events:none">📩</span>
+    <span style="position:absolute;bottom:12%;right:3%;font-size:1.6rem;opacity:.12;transform:rotate(9deg);pointer-events:none">🌏</span>
+    <span style="position:absolute;bottom:5%;left:3%;font-size:1.3rem;opacity:.1;transform:rotate(-8deg);pointer-events:none">🤝</span>
     <div class="ct-inner">
       <div class="ct-eyebrow rv">07 — Contact</div>
       <h2 class="ct-h rv" style="transition-delay:.1s">Let's build<br><em>something great</em></h2>
@@ -1035,12 +1247,12 @@ footer span{color:var(--m)}
           <div class="cl-l"><div class="cl-ico">📱</div><div><div class="cl-k">Phone</div><div class="cl-v">+91 70588 48982</div></div></div>
           <div class="cl-arr">→</div>
         </a>
-        <a href="https://linkedin.com/in/chaitanyasabale" target="_blank" class="cl rv" style="transition-delay:.35s">
-          <div class="cl-l"><div class="cl-ico">💼</div><div><div class="cl-k">LinkedIn</div><div class="cl-v">linkedin.com/in/chaitanyasabale</div></div></div>
+        <a href="https://github.com/sabalechaitanya13" target="_blank" class="cl rv" style="transition-delay:.35s">
+          <div class="cl-l"><div class="cl-ico">🐙</div><div><div class="cl-k">GitHub</div><div class="cl-v">github.com/sabalechaitanya13</div></div></div>
           <div class="cl-arr">→</div>
         </a>
-        <a href="https://chaitanyasabale.com" target="_blank" class="cl rv" style="transition-delay:.41s">
-          <div class="cl-l"><div class="cl-ico">🌐</div><div><div class="cl-k">Website</div><div class="cl-v">chaitanyasabale.com</div></div></div>
+        <a href="https://linkedin.com/in/chaitanyasabale" target="_blank" class="cl rv" style="transition-delay:.41s">
+          <div class="cl-l"><div class="cl-ico">💼</div><div><div class="cl-k">LinkedIn</div><div class="cl-v">linkedin.com/in/chaitanyasabale</div></div></div>
           <div class="cl-arr">→</div>
         </a>
       </div>
